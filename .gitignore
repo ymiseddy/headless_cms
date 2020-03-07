@@ -1,0 +1,40 @@
+
+# Ignore virtual env 
+/venv
+/.env
+
+# Ignore dist directory
+/dist
+/www/assets/dist
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+node_modules/
+
+# Remove swap files.
+*.swp
+*._swn
+*._swo
+
+# Config files
+*.yaml
+config.json
+# Log files.
+*.log
+
+.coverage
+.pytest_cache
+
+temp.py
+
+
+.ropeproject/
+*.db
+pytest.ini
+tags
+TAGS
+
+/vendor
