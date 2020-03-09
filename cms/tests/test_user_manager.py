@@ -1,6 +1,7 @@
 import unittest
 import cms.user_management.manager as um
 import cms.base_commands as bc
+import krnch.wiring
 from krnch.container import get_container
 from krnch.routing import Bus
 import krnch.secure as sec
@@ -107,6 +108,11 @@ class TestUserManager(unittest.TestCase):
         self.assertTrue(response.result)
         #self.assertTrue(response.result["email"] == self.sample_user["email"])
         # self.assertTrue(sec.verify_password(self.sample_user["password"], response.result["password_hash"]))
+
+    def test_user_login(self):
+        login = {"email": "bob@example.com", "password": "xxxxx"}
+        cmd = um.UserLoginCommand(login)
+        self.bus.dispatch(cmd)
 
 
 if __name__ == "__main__":

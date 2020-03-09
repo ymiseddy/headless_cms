@@ -1,3 +1,5 @@
+""" User Management """
+
 import cms.base_commands as bc
 import base58
 import krnch.routing as kr
@@ -48,6 +50,12 @@ class User(es.DataEntity):
     password_hash = es.attribute()
     must_change_password = es.attribute
 
+class UserLoginCommand(bc.ValidatingCommand):
+    """ User logs in """
+    schema = {
+        "email": {"type": "string", "required": True},
+        "password": {"type": "string", "required": True}
+    }
 
 @kr.service
 class UserManager:
@@ -70,5 +78,8 @@ class UserManager:
 
     @kr.handles(UserLoginCommand)
     def handle_user_login(self, cmd):
-        """ Handles user login> """
-        pass
+        """ Handles user login """
+        user_id='xxxxx'
+        with self.eventstore.context() as ctx:
+            user = ctx.load(User, user_id)
+            print(user)
